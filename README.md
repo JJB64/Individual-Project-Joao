@@ -1,1 +1,1 @@
-# Individual-Project-Joao
+# Individual-Project-ICP
