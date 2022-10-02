@@ -80,16 +80,18 @@ public class Main {
                 Node var= Frontier.poll();
                 Explored.add(var);
 
-                if(var.getState() != null){
+                if(var.getState() != null) {
                     ArrayList<routes> Actions = routes.routes_Map.get(var.getState().getIATA());
-                    for (int k = 0; k <  Potential_Airports.size(); k++) {
-                        airports cState= airports.Select_Airport.get(Actions.get(k).getDestination_AirportCode());
-                        int cost= var.getPathcost() + 1;
-                        Node child = new Node(cState,var,Actions.get(k), cost);
+                    for(routes action:Actions) {
+                        airports cState = airports.Select_Airport.get(action.getDestination_AirportCode());
+                        int cost = var.getPathcost() + 1;
+                        Node child = new Node(cState, var, action, cost);
                         //System.out.println(child);
-                        if(!Explored.contains(child) && !Frontier.contains(child.state)) {
+                        if (!Explored.contains(child.state) && !Frontier.contains(child)) {
                             if (GoalTest(child, Ecity, Ecountry)) {
                                 child.Solution_Path();
+                            } else {
+                                System.out.println("Error");
                             }
                         }
                     }

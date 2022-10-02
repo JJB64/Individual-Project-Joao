@@ -12,10 +12,6 @@ public class Node {
 
 
 
-    public Node(airports state) {
-        this.state = state;
-    }
-
     public Node(airports state,Node parent, routes actions, int pathcost) {
         this.state = state;
         this.parent = parent;
@@ -40,7 +36,15 @@ public class Node {
         return this.parent;
     }
 
-
+    @Override
+    public String toString() {
+        return "Node{" +
+                "state=" + state +
+                ", parent=" + parent +
+                ", actions=" + actions +
+                ", pathcost=" + pathcost +
+                '}';
+    }
 
     public void Solution_Path(){
             ArrayList<String> Cummulative_States = new ArrayList<String>();
