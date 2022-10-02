@@ -48,16 +48,55 @@ public class Main {
     }
 
     public static boolean GoalTest(Node x, String endcity, String endcountry){
-        if(x.getState().getCity().equals(endcity) && x.getState().getCountry().equals(endcountry)){
-            return true;
-        } else if (x.getState() == null) {
+        if(x.getState() == null){
             return false;
-        }else{
-            return false;
+        }else {
+            if (x.getState().getCity().equals(endcity) && x.getState().getCountry().equals(endcountry)) {
+                return true;
+            } else if (x.getState() == null) {
+                return false;
+            } else {
+                return false;
+            }
         }
 
 
     }
+
+//    public Node bfs() {
+//        Queue<Node> frontier = new LinkedList<Node>();
+//        ArrayList<Node> airportNode = nodeCreator();
+//
+//        frontier.addAll(airportNode);
+//
+//        HashSet<Node> explored = new HashSet<>();
+//
+//        while (frontier.size() > 0) {
+//            Node initialNode = frontier.poll();
+//            explored.add(initialNode);
+//            if (initialNode.getState() != null) {
+//                ArrayList<Routes> flights = Routes.routesMap.get(initialNode.getState().getAirportIata());
+//                for (Routes action : flights) {
+//                    Node child = new Node(initialNode, Airports.iataAirport.get(action.getDestinationAirportCode()), action, initialNode.getPathCost() + 1);
+//                    if (!explored.contains(child) && !frontier.contains(child)) {
+//                        if (goalTest(child)) {
+//                            System.out.println(child);
+//                            child.solutionPath();
+//
+//
+//                            return child;
+//                        }
+//                        frontier.add(child);
+//                    }
+//
+//                }
+//
+//            }else {;}
+//
+//
+//        }
+//        return null;
+//    }
 
 
 
@@ -86,17 +125,17 @@ public class Main {
                         airports cState = airports.Select_Airport.get(action.getDestination_AirportCode());
                         int cost = var.getPathcost() + 1;
                         Node child = new Node(cState, var, action, cost);
-                        //System.out.println(child);
                         if (!Explored.contains(child.state) && !Frontier.contains(child)) {
                             if (GoalTest(child, Ecity, Ecountry)) {
                                 child.Solution_Path();
-                            } else {
-                                System.out.println("Error");
                             }
+                            Frontier.add(child);
+                            }
+
                         }
-                    }
+
                 }else{
-                    System.out.println("Error");
+                    ;}
                 }
 
         }
@@ -112,7 +151,7 @@ public class Main {
 
 
 
-}
+
 
 
 
