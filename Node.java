@@ -51,7 +51,6 @@ public class Node {
             String flightpath;
             Node var = this;
             int Tpath_cost=0;
-            System.out.println(var);
             while(var.parent !=  null) {
                 flightpath= var.actions.getAirline() + " from " + var.getParent().getState().getIATA() + " to "+ var.state.getIATA() + "is " + var.actions.getStops() + " stops" +"\r\n" ;
                 Cummulative_States.add(flightpath);
