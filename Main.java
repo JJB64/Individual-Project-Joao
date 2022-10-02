@@ -40,7 +40,7 @@ public class Main {
         for (airports datum : AirData) {
             Node node = new Node(datum, null, null, 0);
             Potential_Airports.add(node);
-            System.out.println(datum);
+            //System.out.println(datum);
         }
         //System.out.println(Potential_Airports);
         return Potential_Airports;
@@ -57,9 +57,9 @@ public class Main {
         }
 
 
-        }
+    }
 
-    
+
 
 
 
@@ -85,23 +85,26 @@ public class Main {
                     for (int k = 0; k <  Potential_Airports.size(); k++) {
                         airports cState= airports.Select_Airport.get(Actions.get(k).getDestination_AirportCode());
                         int cost= var.getPathcost() + 1;
-                        Node child = new Node(cState,var,Actions.get(k), var.getPathcost() + 1);
-                        if(!Explored.contains(child) && !Frontier.contains(child)){
-                            if(GoalTest(child,Ecity,Ecountry)){
+                        Node child = new Node(cState,var,Actions.get(k), cost);
+                        //System.out.println(child);
+                        if(!Explored.contains(child) && !Frontier.contains(child.state)) {
+                            if (GoalTest(child, Ecity, Ecountry)) {
                                 child.Solution_Path();
-
-                            }else{
-                                System.out.println("False");
                             }
-                            Frontier.add(child);
                         }
-
-
+                    }
+                }else{
+                    System.out.println("Error");
                 }
-            }
 
         }
-    }}
+
+
+        }
+    }
+
+
+
 
 
 
