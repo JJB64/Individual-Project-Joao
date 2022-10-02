@@ -63,41 +63,6 @@ public class Main {
 
     }
 
-//    public Node bfs() {
-//        Queue<Node> frontier = new LinkedList<Node>();
-//        ArrayList<Node> airportNode = nodeCreator();
-//
-//        frontier.addAll(airportNode);
-//
-//        HashSet<Node> explored = new HashSet<>();
-//
-//        while (frontier.size() > 0) {
-//            Node initialNode = frontier.poll();
-//            explored.add(initialNode);
-//            if (initialNode.getState() != null) {
-//                ArrayList<Routes> flights = Routes.routesMap.get(initialNode.getState().getAirportIata());
-//                for (Routes action : flights) {
-//                    Node child = new Node(initialNode, Airports.iataAirport.get(action.getDestinationAirportCode()), action, initialNode.getPathCost() + 1);
-//                    if (!explored.contains(child) && !frontier.contains(child)) {
-//                        if (goalTest(child)) {
-//                            System.out.println(child);
-//                            child.solutionPath();
-//
-//
-//                            return child;
-//                        }
-//                        frontier.add(child);
-//                    }
-//
-//                }
-//
-//            }else {;}
-//
-//
-//        }
-//        return null;
-//    }
-
 
 
 
