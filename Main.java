@@ -34,12 +34,40 @@ public class Main {
 
     }
 
+    public static ArrayList<Node>  generateAirports(String Sdata){
+        ArrayList<Node> Potential_Airports = new ArrayList<>();
+        ArrayList<airports> AirData = airports.getAirport_Map().get(Sdata);
+        for (airports datum : AirData) {
+            Node node = new Node(datum, null, null, 0);
+            Potential_Airports.add(node);
+            System.out.println(datum);
+        }
+        //System.out.println(Potential_Airports);
+        return Potential_Airports;
+
+    }
+
+    public static boolean GoalTest(Node x, String endcity, String endcountry){
+        if(x.getState().getCity().equals(endcity) && x.getState().getCountry().equals(endcountry)){
+            return true;
+        } else if (x.getState() == null) {
+            return false;
+        }else{
+            return false;
+        }
+
+
+        }
+
+    
+
+
 
     public static void bfs(String Scity, String Scountry, String Ecity, String Ecountry) {
         Queue<Node> Frontier = new LinkedList<>();
         HashSet<Node> Explored = new HashSet();
-        ArrayList<Node> Potential_Airports = new ArrayList<Node>();
-        String Sdata=Scity+Scountry;
+        ArrayList<Node> Potential_Airports = new ArrayList<>();
+        String Sdata = Scity + Scountry;
         Potential_Airports= generateAirports(Sdata);
 
 
@@ -57,14 +85,15 @@ public class Main {
                     for (int k = 0; k <  Potential_Airports.size(); k++) {
                         airports cState= airports.Select_Airport.get(Actions.get(k).getDestination_AirportCode());
                         int cost= var.getPathcost() + 1;
-                        Node child = new Node(cState,var,Actions.get(k), cost);
-                        if(!Explored.contains(child) && !Frontier.contains(child.getState())){
+                        Node child = new Node(cState,var,Actions.get(k), var.getPathcost() + 1);
+                        if(!Explored.contains(child) && !Frontier.contains(child)){
                             if(GoalTest(child,Ecity,Ecountry)){
                                 child.Solution_Path();
-                                Frontier.add(child);
+
                             }else{
                                 System.out.println("False");
                             }
+                            Frontier.add(child);
                         }
 
 
@@ -75,29 +104,8 @@ public class Main {
     }}
 
 
-        public static ArrayList<Node>  generateAirports(String Sdata){
-            ArrayList<Node> Potential_Airports = new ArrayList<>();
-            ArrayList<airports> AirData = airports.getAirport_Map().get(Sdata);
-            for (airports datum : AirData) {
-                Node node = new Node(datum, null, null, 0);
-                Potential_Airports.add(node);
-                System.out.println(datum);
-            }
-            System.out.println(Potential_Airports);
-            return Potential_Airports;
 
-        }
 
-        public static boolean GoalTest(Node x, String endcity, String endcountry){
-            if(x.getState() == null) {
-                return false;
-            }
-            if(x.getState().getCity().equals(endcity) && x.getState().getCountry().equals(endcountry)){
-                return true;
-            }else{
-                return false;
-            }
-        }
 
 }
 
